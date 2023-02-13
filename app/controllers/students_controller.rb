@@ -23,6 +23,12 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_record_invalid
         render json: student, status: :accepted
     end
 
+    def destroy
+        student = Student.find(params[:id])
+        student.destroy!
+        render json: [], status: :no_content
+    end
+
     private
 
     def render_record_not_found
